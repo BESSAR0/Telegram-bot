@@ -5,24 +5,23 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Table(name = "telegram_user")
 @Entity
+@Table(name = "book_list")
 @Data
-public class UserModel {
+public class BookModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Column(name = "username")
-    String username;
-    @Column(name = "telegram_id")
-    String tgId;
-
-    @Column(name = "name")
-    String name;
-
-    @Column(name = "wanted_doc" )
+    @Column(name = "doctor")
     @Enumerated
     DoctorEnum doctorEnum;
+
+    @Column(name = "time")
+    String time;
+
+    @Column(name = "tg_id")
+    String tgId;
+
 
 }
