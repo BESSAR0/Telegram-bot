@@ -1,12 +1,11 @@
 package com.example.telegrambot.Models;
 
 import com.example.telegrambot.Helpers.DoctorEnum;
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
 
 @Entity
-@Table(name = "book_list")
 @Data
 public class BookModel {
     @Id

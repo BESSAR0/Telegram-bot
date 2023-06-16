@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class DoctorHelper {
 @Autowired
-    BoodRepo boodRepo;
+BoodRepo boodRepo;
 
 private static DoctorHelper doctorHelper = null;
 
