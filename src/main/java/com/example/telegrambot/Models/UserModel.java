@@ -3,10 +3,11 @@ package com.example.telegrambot.Models;
 import com.example.telegrambot.Helpers.DoctorEnum;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-@Table(name = "telegram_user")
+
 @Entity
+@Table(name = "telegram_user")
 @Data
 public class UserModel {
     @Id

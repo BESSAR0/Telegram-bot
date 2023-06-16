@@ -19,19 +19,22 @@ public class ChooseTime implements WorkerCommand{
         TimeControl timeControl = new TimeControl();
         List<String> list = timeControl.getTimes();
         boolean ifThisCommand=false;
-        for (String str: list){
-            if (update.getMessage().getText().equals(str)){
+        for (String str: list) {
+            if (update.getMessage().getText().equals(str)) {
                 ifThisCommand = true;
             }
         }
-        if (!ifThisCommand){
-            return null;
-        }
+            if (!ifThisCommand) {
+                return null;
+            }
+
         BookModel bookModel = new BookModel();
         bookModel.setTime(update.getMessage().getText().toString());
 
+
         UserModel userModel = new UserModel();
-        userModel= UserHelper.findUser(update.getMessage().getFrom().getId().toString());
+        userModel = UserHelper.findUser(update.getMessage().getFrom().getId().toString());
+        userModel.setTgId(update.getMessage().getFrom().getId().toString());
 
         bookModel.setTgId(update.getMessage().getFrom().getId().toString());
         bookModel.setDoctorEnum(userModel.getDoctorEnum());

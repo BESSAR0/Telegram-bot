@@ -6,22 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserHelper {
-    final
-    UserRepo userRepo;
+public class
+UserHelper {
 
-    public UserHelper(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public static UserRepo userRepo;
+
+
+    public UserHelper(UserRepo userRepos) {
+        userRepo = userRepos;
+        userHelper = this;
     }
 
-    private static UserHelper helper = null;
+    public static UserHelper userHelper = null;
+ /*   public static UserModel find(String tgId){
+        UserModel userModel;
+        userModel = userRepo.findUserModelByTgId(tgId);
+        return userModel;
+    }*/
 
-    public static void saveUser(UserModel u){
-        helper.userRepo.save(u);
+    public static void saveUser(UserModel userModel){
+        userRepo.save(userModel);
     }
+
     public static UserModel findUser(String tgId){
         UserModel userModel = new UserModel();
-        userModel = helper.userRepo.findUserModelByTgId(tgId);
+        userModel = userRepo.findUserModelByTgId(tgId);
         return userModel;
     }
 }

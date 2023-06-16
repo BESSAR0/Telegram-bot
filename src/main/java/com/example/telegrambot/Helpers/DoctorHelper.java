@@ -10,21 +10,22 @@ import java.util.List;
 
 @Component
 public class DoctorHelper {
-@Autowired
-    BoodRepo boodRepo;
 
-private static DoctorHelper doctorHelper = null;
+public static BoodRepo boodRepo;
 
-    public DoctorHelper() {
+public static DoctorHelper doctorHelper = null;
+
+    public DoctorHelper(BoodRepo boodRepos) {
+        boodRepo = boodRepos;
         doctorHelper = this;
     }
 
     public static void save(BookModel b){
-        doctorHelper.boodRepo.save(b);
+        boodRepo.save(b);
     }
     public static List<String> getFreeTimes(DoctorEnum d){
         TimeControl timeControl = new TimeControl();
-        List<BookModel> bookModelList = doctorHelper.boodRepo.findBookModelByDoctorEnum(d);
+        List<BookModel> bookModelList = boodRepo.findBookModelByDoctorEnum(d);
         List<String> freeTimes = new ArrayList<>();
         freeTimes = timeControl.getTimes();
 

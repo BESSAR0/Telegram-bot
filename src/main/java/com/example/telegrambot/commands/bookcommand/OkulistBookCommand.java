@@ -44,7 +44,7 @@ public class OkulistBookCommand implements WorkerCommand {
 
         KeyboardRow k2 = new KeyboardRow();
         if (list.size()>2){
-            for (int i = 0; i < list.size(); i++) {
+            for (int i = 2; i < list.size(); i++) {
                 k2.add(new KeyboardButton(list.get(i)));
             }
             list1.add(k2);

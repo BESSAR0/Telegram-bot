@@ -1,5 +1,6 @@
 package com.example.telegrambot.commands;
 
+import com.example.telegrambot.Models.UserModel;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -14,6 +15,8 @@ import java.util.List;
 public class BookCommand implements WorkerCommand {
     @Override
     public SendMessage start(Update update) {
+        UserModel userModel = new UserModel();
+        userModel.setTgId(update.getMessage().getFrom().getId().toString());
         if (!update.getMessage().getText().equals("Записаться к врачу"))
             {
                 return null;

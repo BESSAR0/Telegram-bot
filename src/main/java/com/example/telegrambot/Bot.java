@@ -1,12 +1,10 @@
 package com.example.telegrambot;
 
-import com.example.telegrambot.Repos.UserRepo;
 import com.example.telegrambot.commands.BookCommand;
 import com.example.telegrambot.commands.ChooseTime;
 import com.example.telegrambot.commands.LoginCommand;
 import com.example.telegrambot.commands.WorkerCommand;
 import com.example.telegrambot.commands.bookcommand.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -35,18 +33,23 @@ public class Bot extends TelegramLongPollingBot {
         return "6101015374:AAFUnow-fF7Fo_7eOj__T4Tzocpn7cxq5OA";
     }
 
+
     @Override
     public void onUpdateReceived(Update update) {
         KeyboardRow k = new KeyboardRow();
-            k.add(new KeyboardButton("Log In"));
+
+        k.add(new KeyboardButton("Log In"));
+
         k.add(new KeyboardButton("Записаться к врачу"));
         SendMessage sendMessage = new SendMessage();
-            sendMessage.setChatId(update.getMessage().getChatId().toString());
-            sendMessage.setText("выберите действие");
+        sendMessage.setChatId(update.getMessage().getChatId().toString());
+        sendMessage.setText("выберите действие");
+
 
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setKeyboard(Collections.singletonList(k));
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
 
         List<WorkerCommand> list = new ArrayList<>();
         list.add(new LoginCommand());
@@ -70,4 +73,4 @@ public class Bot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-    }
+}

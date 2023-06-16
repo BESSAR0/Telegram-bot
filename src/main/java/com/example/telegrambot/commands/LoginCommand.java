@@ -14,20 +14,16 @@ import java.util.Collections;
 @Component
 public class LoginCommand implements WorkerCommand{
 
+
     @Override
     public SendMessage start(Update update) {
-        if (!update.getMessage().getText().equals("Log In")
-                &&!update.getMessage().getText().equals("Оставить свое имя")
-        &&!update.getMessage().getText().equals("Остаться анонимным")) {
-            return null;
-        }
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Выберите действие");
         sendMessage.setChatId(update.getMessage().getChatId().toString());
          if (update.getMessage().getText().equals("Log In")) {
              KeyboardRow keyboardRow = new KeyboardRow();
              keyboardRow.add(new KeyboardButton("Оставить свое имя"));
-             keyboardRow.add(new KeyboardButton("Остаться анонимным"));
+        //     keyboardRow.add(new KeyboardButton("Остаться анонимным"));
 
 
              ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
@@ -37,11 +33,6 @@ public class LoginCommand implements WorkerCommand{
         UserModel userModel = new UserModel();
          userModel.setUsername(update.getMessage().getFrom().getUserName());
          userModel.setTgId(update.getMessage().getFrom().getId().toString());
-
-         if (update.getMessage().getText().equals("Остаться анонимным")){
-             sendMessage.setText("Пользователь сохранён");
-             UserHelper.saveUser(userModel);
-         }
          if (update.getMessage().getText().equals("Оставить свое имя")){
              sendMessage.setText("Пользователь сохранён");
              userModel.setName(update.getMessage().getFrom().getFirstName());

@@ -1,6 +1,6 @@
 package com.example.telegrambot.Helpers;
 
-public enum DoctorEnum {
+public enum DoctorEnum  {
     TERAPEVT,
     OKULIST,
     HIRURG,

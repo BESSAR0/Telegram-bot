@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 public class TimeControl {
-    private List<String> times = new ArrayList<>();
+    private final List<String> times = new ArrayList<>();
 
     public TimeControl() {
         this.times.add("10:00");

@@ -4,7 +4,9 @@ import com.example.telegrambot.Helpers.DoctorEnum;
 import com.example.telegrambot.Helpers.DoctorHelper;
 import com.example.telegrambot.Helpers.UserHelper;
 import com.example.telegrambot.Models.UserModel;
+import com.example.telegrambot.Repos.UserRepo;
 import com.example.telegrambot.commands.WorkerCommand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Component
 public class TerapevtBookCommand implements WorkerCommand {
+
     @Override
     public SendMessage start(Update update) {
         if (update.getMessage().getText().equals("Терапевт")){
@@ -34,6 +37,7 @@ public class TerapevtBookCommand implements WorkerCommand {
         sendMessage.setChatId(update.getMessage().getChatId().toString());
         sendMessage.setText("Выберите подходящее время");
 
+
         List<String> list = DoctorHelper.getFreeTimes(DoctorEnum.TERAPEVT);
         KeyboardRow k1 = new KeyboardRow();
         k1.add(new KeyboardButton(list.get(0)));
@@ -44,7 +48,7 @@ public class TerapevtBookCommand implements WorkerCommand {
 
         KeyboardRow k2 = new KeyboardRow();
         if (list.size()>2){
-            for (int i = 0; i < list.size(); i++) {
+            for (int i = 2; i < list.size(); i++) {
                 k2.add(new KeyboardButton(list.get(i)));
             }
             list1.add(k2);
